@@ -78,7 +78,7 @@ exports.create_report = async (req, res) => {
 }
 
 exports.delete_report = async (req, res) => {
-  const repord_id = req.params.rid;
+  const report_id = req.params.report_id;
   query = {
     text: `delete from reports
             where report_id = $1`,
