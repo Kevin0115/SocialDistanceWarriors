@@ -45,3 +45,57 @@ exports.get_report_by_id = async (req, res) => {
   }
 }
 
+exports.create_report = async (req, res) => {
+  const report_id = Math.floor((Math.random() * 9999999999) + 1).toString();
+  const status = req.body.status;
+  const reporter_id = Math.floor((Math.random() * 9999999999) + 1).toString();
+  const ts = moment().format('YYYY-MM-DD hh:mm:ssA');
+  const priority = 100;
+  const location = req.body.location;
+  const perp_name = req.body.perp_name;
+  const details = req.body.details;
+
+  query = {
+    text: `insert into reports
+            values ($1,$2,$3,$4,$5,$6,$7,$8)`,
+    values: [report_id, status, reporter_id, ts, priority, location, perp_name, details]
+  }
+
+  try {
+    const query_result = await connection.query(query);
+    console.log(query_result);
+    res.send({
+      success: true,
+      content: report_id
+    });
+  } catch(err) {
+    console.error(err);
+    res.send({
+      success: false,
+      content: err.detail
+    });
+  }
+}
+
+exports.delete_report = async (req, res) => {
+  const repord_id = req.params.rid;
+  query = {
+    text: `delete from reports
+            where report_id = $1`,
+    values: [report_id]
+  }
+
+  try {
+    const query_result = await connection.query(query);
+    res.send({
+      success: true,
+      content: report_id
+    })
+  } catch(err) {
+    console.error(err);
+    res.send({
+      success: false,
+      content: err.detail
+    });
+  }
+}
