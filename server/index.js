@@ -19,10 +19,11 @@ app.use(express.urlencoded({ extended : true }));
 app.use(bodyParser.urlencoded({extended: true}))
 
 // Import Routes
-var receiver = require('./routes/receiver');
-var merchant = require('./routes/merchant');
-var donation = require('./routes/donation');
-var transaction = require('./routes/transaction');
+var reports = require('./routes/reports');
+// var receiver = require('./routes/receiver');
+// var merchant = require('./routes/merchant');
+// var donation = require('./routes/donation');
+// var transaction = require('./routes/transaction');
 
 // Declare application parameters
 // Will have to change this if moving to a VM
@@ -30,10 +31,11 @@ var HTTP_PORT = 8080;
 
 // Routes
 app.use('/', express.static(STATIC_ROOT));
-app.use('/receiver', receiver);
-app.use('/merchant', merchant);
-app.use('/donation', donation);
-app.use('/transaction', transaction);
+app.use('/reports', reports);
+// app.use('/receiver', receiver);
+// app.use('/merchant', merchant);
+// app.use('/donation', donation);
+// app.use('/transaction', transaction);
 
 // Server
 var httpServer = http.createServer(app);
