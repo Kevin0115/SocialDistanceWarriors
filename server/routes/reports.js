@@ -11,4 +11,8 @@ router.post('/', reports_controller.create_report);
 
 router.delete('/:report_id', reports_controller.delete_report);
 
+router.put('/:report_id/status', reports_controller.update_report_status);
+
+router.put('/:report_id/details', reports_controller.update_report_details);
+
 module.exports = router;
