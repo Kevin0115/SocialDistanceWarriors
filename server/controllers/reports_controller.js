@@ -5,9 +5,11 @@ exports.get_all_reports = async (req, res) => {
   query = {
     text: `select * from reports`
   }
-
+  console.log(`line 8`);
   try {
+    console.log(`line 10`);
     const query_result = await connection.query(query);
+    console.log(`line 12`);
     res.send({
       success: true,
       content: query_result.rows
