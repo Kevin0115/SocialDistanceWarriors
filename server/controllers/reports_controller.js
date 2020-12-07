@@ -101,3 +101,53 @@ exports.delete_report = async (req, res) => {
     });
   }
 }
+
+exports.update_report_status = async (req, res) => {
+  const report_id = req.params.report_id;
+  const status = req.body.status;
+  query = {
+    text: `update reports
+            set status = $2
+            where report_id = $1`,
+    values: [report_id, status]
+  }
+
+  try {
+    const query_result = await connection.query(query);
+    res.send({
+      success: true,
+      rowsUpdated: query_result.rowCount
+    })
+  } catch(err) {
+    console.error(err);
+    res.send({
+      success: false,
+      content: err.detail
+    });
+  }
+}
+
+exports.update_report_details = async (req, res) => {
+  const report_id = req.params.report_id;
+  const details = req.body.details;
+  query = {
+    text: `update reports
+            set details = $2
+            where report_id = $1`,
+    values: [report_id, details]
+  }
+
+  try {
+    const query_result = await connection.query(query);
+    res.send({
+      success: true,
+      rowsUpdated: query_result.rowCount
+    })
+  } catch(err) {
+    console.error(err);
+    res.send({
+      success: false,
+      content: err.detail
+    });
+  }
+}
