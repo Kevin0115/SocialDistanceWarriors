@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 
 // Import Routes
 var reports = require('./routes/reports');
-var reporters = require('./routes/reports');
+var reporters = require('./routes/reporters');
 // var receiver = require('./routes/receiver');
 // var merchant = require('./routes/merchant');
 // var donation = require('./routes/donation');
