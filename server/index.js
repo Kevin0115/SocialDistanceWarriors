@@ -32,6 +32,7 @@ var HTTP_PORT = 8080;
 // Routes
 app.use('/', express.static(STATIC_ROOT));
 app.use('/reports', reports);
+app.use('./reporters', reporters)
 // app.use('/receiver', receiver);
 // app.use('/merchant', merchant);
 // app.use('/donation', donation);
